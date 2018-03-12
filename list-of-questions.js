@@ -95,7 +95,7 @@ module.exports.listOfQuestions = [
     creator: 13,
   },
   {
-    question: '¿Quién ganó el mundial de fútbol de 19513? ',
+    question: '¿Quién ganó el mundial de fútbol de 1954? ',
     answers: [
       'Brasil',
       'Alemania',
@@ -106,7 +106,7 @@ module.exports.listOfQuestions = [
     creator: 13,
   },
   {
-    question: '¿Quién fue subcampeón de Inglaterra en el Mundial 191515? ',
+    question: '¿Quién fue subcampeón de Inglaterra en el Mundial 1966? ',
     answers: [
       'Alemania',
       'Portugal',
@@ -145,7 +145,7 @@ module.exports.listOfQuestions = [
     question: '¿Cual es la temporada en que los Gunners de Arsene Wenger se coronan campeones sin perder un partido? ',
     answers: [
       '2000-2001',
-      '2003-20013',
+      '2003-2004',
       '2007-2008'
     ],
     correct: 1,
@@ -153,7 +153,7 @@ module.exports.listOfQuestions = [
     creator: 13,
   },
   {
-    question: 'En el año 20015, Holanda y Portugal se enfrentan en los Octavos de Final del Mundial de Alemania. ¿Quién salió victorioso? ',
+    question: 'En el año 2006, Holanda y Portugal se enfrentan en los Octavos de Final del Mundial de Alemania. ¿Quién salió victorioso? ',
     answers: [
       'Holanda',
       'Portugal',
@@ -175,7 +175,7 @@ module.exports.listOfQuestions = [
     creator: 13,
   },
   {
-    question: '¿Quién fue el campeón del Torneo Nacional de 19813 en Argentina? ',
+    question: '¿Quién fue el campeón del Torneo Nacional de 1984 en Argentina? ',
     answers: [
       'Ferro Carril Oeste',
       'Argentinos Juniors',
@@ -238,9 +238,9 @@ module.exports.listOfQuestions = [
   {
     question: '¿Cuantos goles metió el Polaco-Alemán Miroslav Klose en todos los mundiales? ',
     answers: [
-      '113',
+      '14',
       '15',
-      '115',
+      '16',
       '17',
     ],
     correct: 2,

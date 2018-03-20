@@ -6,4 +6,4 @@ Edit this file https://github.com/panchopoliti/questionGame/blob/master/src/list
 
 ## Run Game
 
-Run in console `node questionGame.js` inside src folder.
+Run in console `npm start`

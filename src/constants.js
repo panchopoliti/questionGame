@@ -3,9 +3,9 @@ const chalk = require('chalk');
 
 module.exports = constants = {
   difficulty: {
-    HIGH_DIFFICULTY: 3,
-    MID_DIFFICULTY: 2,
-    LOW_DIFFICULTY: 1,
+    BAJA: 1,
+    MEDIA: 2,
+    ALTA: 3,
   },
   players_id: {
     ['INVITADO 1']: 1,
@@ -25,13 +25,15 @@ module.exports = constants = {
   },
   colours: {
     blueBold: (text) => chalk.hex('#337ab7').bold(text),
-    green: (text) => chalk.hex('#128069')(text),
+    alentameGreen: (text) => chalk.hex('#128069')(text),
+    successGreen: (text) => chalk.hex('00A227').bold(text),
     wrongRed: (text) => chalk.hex('#ec4758').bold(text),
     yellow:(text) => chalk.hex('#8e8200').bold(text),
     orange: (text) => chalk.hex('#e8a409')(text),
+    lightBlueBold: (text) => chalk.hex('#179eff')(text),
+    pinkBold: (text) => chalk.hex('#f04bb5')(text),
   },
   numberOfPlayers: [1, 2, 3, 4],
   numberOfQuestionsPerPlayer: 2,
 };
 
-module.exports.playersPlaying = [];

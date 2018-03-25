@@ -4,7 +4,9 @@
   "description": "A quiz game",
   "main": "questionGame.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/questionGame.js",
+    "add-question": "node src/scripts/loadNewQuestion.js"
   },
   "repository": {
     "type": "git",
@@ -16,7 +18,9 @@
     "quiz"
   ],
   "dependencies": {
-    "chalk": "^2.2.0"
+    "chalk": "^2.2.0",
+    "knex": "^0.14.4",
+    "pg": "^7.4.1"
   },
   "author": "Francisco Politi",
   "license": "MIT",

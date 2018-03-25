@@ -10,7 +10,7 @@ module.exports.listOfQuestions = [
       'Fiorentina'
     ],
     correct: 0,
-    difficulty: constants.difficulty.HIGH_DIFFICULTY,
+    difficulty: constants.difficulty.ALTA,
     creator: 13,
   },
   {
@@ -22,7 +22,7 @@ module.exports.listOfQuestions = [
       'Ruud Gullit',
     ],
     correct: 1,
-    difficulty: constants.difficulty.MID_DIFFICULTY,
+    difficulty: constants.difficulty.MEDIA,
     creator: 13,
   },
   {
@@ -33,7 +33,7 @@ module.exports.listOfQuestions = [
       'El Calamar'
     ],
     correct: 2,
-    difficulty: constants.difficulty.LOW_DIFFICULTY,
+    difficulty: constants.difficulty.BAJA,
     creator: 13,
   },
   {
@@ -44,7 +44,7 @@ module.exports.listOfQuestions = [
       'Barcelona'
     ],
     correct: 1,
-    difficulty: constants.difficulty.MID_DIFFICULTY,
+    difficulty: constants.difficulty.MEDIA,
     creator: 13,
   },
   {
@@ -55,7 +55,7 @@ module.exports.listOfQuestions = [
       'Milán'
     ],
     correct: 0,
-    difficulty: constants.difficulty.LOW_DIFFICULTY,
+    difficulty: constants.difficulty.BAJA,
     creator: 13,
   },
   {
@@ -68,7 +68,7 @@ module.exports.listOfQuestions = [
       'John Terry',
     ],
     correct: 0,
-    difficulty: constants.difficulty.MID_DIFFICULTY,
+    difficulty: constants.difficulty.MEDIA,
     creator: 13,
   },
   {
@@ -80,7 +80,7 @@ module.exports.listOfQuestions = [
       'Francia',
     ],
     correct: 2,
-    difficulty: constants.difficulty.MID_DIFFICULTY,
+    difficulty: constants.difficulty.MEDIA,
     creator: 13,
   },
   {
@@ -91,7 +91,7 @@ module.exports.listOfQuestions = [
       'St Patrick\'s Athletic',
     ],
     correct: 1,
-    difficulty: constants.difficulty.HIGH_DIFFICULTY,
+    difficulty: constants.difficulty.ALTA,
     creator: 13,
   },
   {
@@ -102,7 +102,7 @@ module.exports.listOfQuestions = [
       'Italia'
     ],
     correct: 1,
-    difficulty: constants.difficulty.LOW_DIFFICULTY,
+    difficulty: constants.difficulty.BAJA,
     creator: 13,
   },
   {
@@ -113,7 +113,7 @@ module.exports.listOfQuestions = [
       'Unión Soviética',
     ],
     correct: 0,
-    difficulty: constants.difficulty.MID_DIFFICULTY,
+    difficulty: constants.difficulty.MEDIA,
     creator: 13,
   },
   {
@@ -125,7 +125,7 @@ module.exports.listOfQuestions = [
       'Luis García - Cissé - Carragher'
     ],
     correct: 2,
-    difficulty: constants.difficulty.HIGH_DIFFICULTY,
+    difficulty: constants.difficulty.ALTA,
     creator: 13,
   },
   {
@@ -138,7 +138,7 @@ module.exports.listOfQuestions = [
       'Héctor Veira',
     ],
     correct: 1,
-    difficulty: constants.difficulty.HIGH_DIFFICULTY,
+    difficulty: constants.difficulty.ALTA,
     creator: 13,
   },
   {
@@ -149,7 +149,7 @@ module.exports.listOfQuestions = [
       '2007-2008'
     ],
     correct: 1,
-    difficulty: constants.difficulty.LOW_DIFFICULTY,
+    difficulty: constants.difficulty.BAJA,
     creator: 13,
   },
   {
@@ -160,7 +160,7 @@ module.exports.listOfQuestions = [
       'Perdieron los dos'
     ],
     correct: 1,
-    difficulty: constants.difficulty.LOW_DIFFICULTY,
+    difficulty: constants.difficulty.BAJA,
     creator: 13,
   },
   {
@@ -171,7 +171,7 @@ module.exports.listOfQuestions = [
       'Lionel Andrés Messi',
     ],
     correct: 2,
-    difficulty: constants.difficulty.LOW_DIFFICULTY,
+    difficulty: constants.difficulty.BAJA,
     creator: 13,
   },
   {
@@ -184,7 +184,7 @@ module.exports.listOfQuestions = [
       'River Plate',
     ],
     correct: 0,
-    difficulty: constants.difficulty.HIGH_DIFFICULTY,
+    difficulty: constants.difficulty.ALTA,
     creator: 13,
   },
   {
@@ -195,7 +195,7 @@ module.exports.listOfQuestions = [
       'Rivaldo',
     ],
     correct: 1,
-    difficulty: constants.difficulty.MID_DIFFICULTY,
+    difficulty: constants.difficulty.MEDIA,
     creator: 13,
   },
   {
@@ -208,7 +208,7 @@ module.exports.listOfQuestions = [
       'Toluca',
     ],
     correct: 3,
-    difficulty: constants.difficulty.HIGH_DIFFICULTY,
+    difficulty: constants.difficulty.ALTA,
     creator: 13,
   },
   {
@@ -219,7 +219,7 @@ module.exports.listOfQuestions = [
       'Flamengo',
     ],
     correct: 2,
-    difficulty: constants.difficulty.LOW_DIFFICULTY,
+    difficulty: constants.difficulty.BAJA,
     creator: 13,
   },
   {
@@ -232,7 +232,7 @@ module.exports.listOfQuestions = [
       'Arsenal',
     ],
     correct: 3,
-    difficulty: constants.difficulty.MID_DIFFICULTY,
+    difficulty: constants.difficulty.MEDIA,
     creator: 15,
   },
   {
@@ -244,7 +244,7 @@ module.exports.listOfQuestions = [
       '17',
     ],
     correct: 2,
-    difficulty: constants.difficulty.LOW_DIFFICULTY,
+    difficulty: constants.difficulty.BAJA,
     creator: 15,
   },
   {
@@ -255,7 +255,7 @@ module.exports.listOfQuestions = [
       'Zaragoza',
     ],
     correct: 1,
-    difficulty: constants.difficulty.MID_DIFFICULTY,
+    difficulty: constants.difficulty.MEDIA,
     creator: 15,
   },
   {
@@ -267,7 +267,7 @@ module.exports.listOfQuestions = [
       'Bayern Munich',
     ],
     correct: 2,
-    difficulty: constants.difficulty.MID_DIFFICULTY,
+    difficulty: constants.difficulty.MEDIA,
     creator: 15,
   },
   {
@@ -280,7 +280,7 @@ module.exports.listOfQuestions = [
       'Todos jugaron en la Juventus',
     ],
     correct: 3,
-    difficulty: constants.difficulty.HIGH_DIFFICULTY,
+    difficulty: constants.difficulty.ALTA,
     creator: 15,
   },
   {
@@ -290,7 +290,7 @@ module.exports.listOfQuestions = [
       'No',
     ],
     correct: 1,
-    difficulty: constants.difficulty.LOW_DIFFICULTY,
+    difficulty: constants.difficulty.BAJA,
     creator: 15,
   },
   {
@@ -301,7 +301,7 @@ module.exports.listOfQuestions = [
       '1991',
     ],
     correct: 2,
-    difficulty: constants.difficulty.LOW_DIFFICULTY,
+    difficulty: constants.difficulty.BAJA,
     creator: 15,
   },
   {
@@ -312,7 +312,7 @@ module.exports.listOfQuestions = [
       'Kaká',
     ],
     correct: 1,
-    difficulty: constants.difficulty.MID_DIFFICULTY,
+    difficulty: constants.difficulty.MEDIA,
     creator: 15,
   },
   {
@@ -323,7 +323,7 @@ module.exports.listOfQuestions = [
       'Liga Portuguesa',
     ],
     correct: 2,
-    difficulty: constants.difficulty.LOW_DIFFICULTY,
+    difficulty: constants.difficulty.BAJA,
     creator: 15,
   },
 ];

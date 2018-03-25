@@ -1,4 +1,5 @@
 const constants = require('./constants.js');
+const get = require('./gets-functions.js');
 
 module.exports.getHowManyPlayersString = () => {
   let ret = '\nOpciones: \n';
@@ -10,18 +11,20 @@ module.exports.getHowManyPlayersString = () => {
   return ret;
 };
 
-module.exports.getPlayersString = (playersPlaying) => {
-  let ret = '\nOpciones: \n 1. INVITADO\n';
-  const possiblePlayersName = Object.keys(constants.players_id);
-  const possiblePlayersId = Object.values(constants.players_id);
+module.exports.getPlayersPlayingString = (playersPlaying) => {
+  let ret = '\nOpciones: \n1. INVITADO\n';
+      ret += module.exports.getPlayersString();
+  return ret;
+};
 
-  for(let i = 0; i < possiblePlayersName.length; i++) {
+module.exports.getPlayersString = () => {
+  let ret ='';
+  const playersName = Object.keys(constants.players_id);
+  const playersId = Object.values(constants.players_id);
 
-    if (playersPlaying.includes(+possiblePlayersId[i]) && possiblePlayersId[i] !== 1) {
-      continue
-    }
-    if (!possiblePlayersName[i].includes('INVITADO')) {
-      ret += `${possiblePlayersId[i]}. ${possiblePlayersName[i]}\n`;
+  for(let i = 0; i < playersId.length; i++) {
+    if (!playersName[i].toLowerCase().split(' ').includes('invitado')) {
+      ret += `${playersId[i]}. ${playersName[i]}\n`;
     }
   }
 
@@ -34,6 +37,19 @@ module.exports.getOptionsString = (questionObject) => {
 
   for(let i = 0; i < questionObject.answers.length; i++) {
     ret += `${i+1}. ${questionObject.answers[i]}\n`;
+  }
+
+  return ret;
+};
+
+module.exports.getPossibleDifficulties = () => {
+  let ret ='';
+  const difficultiesName = Object.keys(constants.difficulty);
+  const difficultiesId = Object.values(constants.difficulty);
+
+
+  for(let i = 0; i < difficultiesId.length; i++) {
+      ret += `${difficultiesId[i]}. ${difficultiesName[i]}\n`;
   }
 
   return ret;

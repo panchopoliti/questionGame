@@ -32,3 +32,5 @@ module.exports.closestEmptyNumber = (playersPlayingArr) => {
   }
   return num;
 };
+
+module.exports.isNumber = (str) => str !== null && isFinite(parseInt(str));

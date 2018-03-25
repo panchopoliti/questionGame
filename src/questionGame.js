@@ -15,14 +15,13 @@ const colour = constants.colours;
 
 const questionsAsked = [];
 const playersPlaying = [];
+
 const questionsAlreadyAsked = (index) => questionsAsked.push(index);
 const checkIfWasAsked = (index) => questionsAsked.includes(index);
 
-const isNumber = (str) => str !== null && isFinite(parseInt(str));
-
 function askHowManyAreGoingToPlay(cb) {
   const numberPlayers = get.getHowManyPlayersString();
-  const myQuestion = `\n${colour.blueBold('¿Cuántos van a jugar?:')} \n${numberPlayers}\n${colour.green('Selección: ')}`;
+  const myQuestion = `\n${colour.blueBold('¿Cuántos van a jugar?:')} \n${numberPlayers}\n${colour.alentameGreen('Selección: ')}`;
 
   rl.question(myQuestion, (ans) => {
     const playersArr = constants.numberOfPlayers;
@@ -36,10 +35,10 @@ function askHowManyAreGoingToPlay(cb) {
 }
 
 function askPlayer(numberPlayers, cb) {
-  const players = get.getPlayersString(playersPlaying);
+  const players = get.getPlayersPlayingString(playersPlaying);
   const firstPartOfQuestion = `\n${colour.yellow(`Jugador ${playersPlaying.length + 1}:`)}\nSi sos invitado, presiona 1, sino, ingresá tu usuario.\n`;
   const clarificationNote = `(Si queres visualizar los posibles Usuarios, presioná 0)\n`;
-  const selection = `\n${colour.green('Selección: ')}`;
+  const selection = `\n${colour.alentameGreen('Selección: ')}`;
   const myQuestion = `${firstPartOfQuestion}${clarificationNote}${selection}`;
 
   rl.question(myQuestion, (ans) => {
@@ -51,28 +50,28 @@ function askPlayer(numberPlayers, cb) {
     }
     if (isNaN(+ans)) {
       const answer = constants.players_id[ans.toUpperCase()];
-      if (playersPlaying.includes(answer)) {
-        log(`Jugador ya elegido. Intentá de nuevo con las siguientes opciones\n \n ${players}`);
-        return askPlayer(numberPlayers, cb);
-      }
       if (answer === undefined) {
         log(colour.wrongRed('Comando inválido. Intentá de nuevo'));
         askPlayer(numberPlayers, cb);
+      }
+      if (playersPlaying.includes(answer)) {
+        log(colour.wrongRed(`Jugador ya elegido. Intentá de nuevo con las siguientes opciones\n \n ${players}`));
+        return askPlayer(numberPlayers, cb);
       } else {
-        log(`Jugador ${playersPlaying.length + 1} es ${ans.toUpperCase()}`);
         playersPlaying.push(answer);
+        log(`Jugador ${playersPlaying.length} es `,setPlayerColour(answer, `${ans.toUpperCase()}`));
       }
     } else if (possiblePlayersId.includes(+ans)) {
       if (+ans < 11) {
         const nextGuest = fn.closestEmptyNumber(playersPlaying);
-        log(`Jugador ${playersPlaying.length + 1} es ${fn.getKeyOfValue(constants.players_id, nextGuest)}`);
         playersPlaying.push(nextGuest);
+        log(`Jugador ${playersPlaying.length} es`, setPlayerColour(nextGuest, `${fn.getKeyOfValue(constants.players_id, nextGuest)}`));
       } else if (playersPlaying.includes(+ans)) {
-        log(`Jugador ya elegido. Intentá de nuevo con las siguientes opciones\n \n ${players}`);
+        log(colour.wrongRed(`Jugador ya elegido. Intentá de nuevo con las siguientes opciones\n \n ${players}`));
         return askPlayer(numberPlayers, cb);
       } else {
-        log(`Jugador ${playersPlaying.length + 1} es ${fn.getKeyOfValue(constants.players_id, +ans)}`);
         playersPlaying.push(+ans);
+        log(`Jugador ${playersPlaying.length} es `, setPlayerColour(+ans, `${fn.getKeyOfValue(constants.players_id, +ans)}`));
       }
     } else {
       log(colour.wrongRed('Comando inválido. Intentá de nuevo'));
@@ -87,7 +86,8 @@ function askPlayer(numberPlayers, cb) {
 }
 
 function askDifficulty(cb) {
-	const myQuestion = `\nElegí la dificultad: \n1.Baja \n2.Media \n3.Alta\n\n${colour.green('Selección: ')} `;
+  const possibleDifficulties = get.getPossibleDifficulties();
+	const myQuestion = `\nElegí la dificultad: \n${possibleDifficulties}\n${colour.alentameGreen('Selección: ')} `;
 
 	rl.question(myQuestion, (ans) => {
 	  const diffObject = constants.difficulty;
@@ -116,7 +116,7 @@ function nextQuestion(difficulty, player) {
 }
 
 function checkCommandValidationInQuiz(questionAnswersArr, playerAnswer) {
-  if (!isNumber(playerAnswer)) {
+  if (!fn.isNumber(playerAnswer)) {
     return false;
   }
   const numberPlayerAnswer = parseInt(playerAnswer);
@@ -136,8 +136,8 @@ function determineWinnerOfGame() {
     log('Hay un Empate');
   } else {
     const playerId = Object.keys(correctAnswersObj)[correctAnswersPerPlayer.indexOf(result)];
-    const playerName = Object.keys(constants.players_id)[Object.values(constants.players_id).indexOf(+playerId)];
-    log(`El ganador es ${playerName}`)
+    const playerName = fn.getKeyOfValue(constants.players_id, +playerId);
+    log('El ganador es', setPlayerColour(+playerId, `${playerName}`));
   }
 }
 
@@ -169,6 +169,12 @@ function pickPlayerTurn() {
   return player;
 }
 
+function setPlayerColour(playerId, text) {
+  const possibleColours = ['lightBlueBold', 'pinkBold', 'orange', 'yellow'];
+
+  return colour[possibleColours[playersPlaying.indexOf(+playerId)]](text);
+}
+
 function countPlayersTurns(playerId) {
   if (playerTurns[playerId] !== undefined) {
     playerTurns[playerId]++;
@@ -194,11 +200,11 @@ function askQuestions(difficulty, indexQuest = null, prevPlayer = null) {
     questionsAlreadyAsked(indexQuestion);
   }
 
-  const playerName = Object.keys(constants.players_id)[Object.values(constants.players_id).indexOf(player)];
+  const playerName = fn.getKeyOfValue(constants.players_id, player);
   const currQuestionObject = loq.listOfQuestions[indexQuestion];
 	let currQuestion = currQuestionObject.question;
 
-	let userInput = `\nTURNO DE ${playerName}\n${currQuestion} ${get.getOptionsString(currQuestionObject)}${colour.green('Respuesta: ')}`;
+	let userInput = `\nTURNO DE ${setPlayerColour(player, `${playerName}`)}\n${currQuestion} ${get.getOptionsString(currQuestionObject)}${colour.alentameGreen('Respuesta: ')}`;
 
 
 	if (counter < constants.numberOfQuestionsPerPlayer * playersPlaying.length) {
@@ -214,7 +220,7 @@ function askQuestions(difficulty, indexQuest = null, prevPlayer = null) {
         };
 
         if (state[counter].correct) {
-          log('Tu respuesta es correcta\n');
+          log(colour.successGreen('Tu respuesta es correcta\n'));
       } else {
           log(`${colour.wrongRed('Tu respuesta es incorrecta.')} La opción correcta es ${currQuestionObject.answers[currQuestionObject.correct]}\n`);
         }
@@ -235,9 +241,9 @@ function askQuestions(difficulty, indexQuest = null, prevPlayer = null) {
       const playerName = fn.getKeyOfValue(constants.players_id, playersPlaying[i]);
       const quantityOfCorrectAnswers = correctAnswersObj[playersPlaying[i]];
       if (quantityOfCorrectAnswers === undefined){
-        log(`${playerName}: No Acertaste respuestas`);
+        log(setPlayerColour(playersPlaying[i], `${playerName}`), ': No Acertaste respuestas');
       } else {
-        log(`${playerName}: Acertaste ${quantityOfCorrectAnswers} respuestas`);
+        log(setPlayerColour(playersPlaying[i], `${playerName}`), `: Acertaste ${quantityOfCorrectAnswers} respuestas`);
       }
     }
 		rl.close();

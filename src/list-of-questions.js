@@ -11,7 +11,7 @@ module.exports.listOfQuestions = [
     ],
     correct: 0,
     difficulty: constants.difficulty.ALTA,
-    creator: 13,
+    creator: 103,
   },
   {
     question: '¿Quién ganó el Balón de Oro otorgado por la FIFA en 1992? ',
@@ -23,7 +23,7 @@ module.exports.listOfQuestions = [
     ],
     correct: 1,
     difficulty: constants.difficulty.MEDIA,
-    creator: 13,
+    creator: 103,
   },
   {
     question: '¿Cuál de estos apodos representa al Club Atlético Platense? ',
@@ -34,7 +34,7 @@ module.exports.listOfQuestions = [
     ],
     correct: 2,
     difficulty: constants.difficulty.BAJA,
-    creator: 13,
+    creator: 103,
   },
   {
     question: 'Durante 12 años, Emilio Butragueño jugó para el mismo club en España. ¿Cuál era? ',
@@ -45,7 +45,7 @@ module.exports.listOfQuestions = [
     ],
     correct: 1,
     difficulty: constants.difficulty.MEDIA,
-    creator: 13,
+    creator: 103,
   },
   {
     question: 'De estos equipos, ¿en cual fue el primero que jugó Zlatan Ibrahimovic ? ',
@@ -56,7 +56,7 @@ module.exports.listOfQuestions = [
     ],
     correct: 0,
     difficulty: constants.difficulty.BAJA,
-    creator: 13,
+    creator: 103,
   },
   {
     question: 'Uno de estos jugadores, nunca ganó la Champions League. ¿Quién es? ',
@@ -69,7 +69,7 @@ module.exports.listOfQuestions = [
     ],
     correct: 0,
     difficulty: constants.difficulty.MEDIA,
-    creator: 13,
+    creator: 103,
   },
   {
     question: 'En el Mundial de Corea-Japón 2002, Arabia Saudita fue derrotado 8-0 en su debut. ¿Quién fue el verdugo? ',
@@ -81,7 +81,7 @@ module.exports.listOfQuestions = [
     ],
     correct: 2,
     difficulty: constants.difficulty.MEDIA,
-    creator: 13,
+    creator: 103,
   },
   {
     question: 'En Irlanda, desde 1922 que el fútbol es profesional. ¿Quién es el que mayor cantidad de veces fue campeón de la Liga? ',
@@ -92,7 +92,7 @@ module.exports.listOfQuestions = [
     ],
     correct: 1,
     difficulty: constants.difficulty.ALTA,
-    creator: 13,
+    creator: 103,
   },
   {
     question: '¿Quién ganó el mundial de fútbol de 1954? ',
@@ -103,7 +103,7 @@ module.exports.listOfQuestions = [
     ],
     correct: 1,
     difficulty: constants.difficulty.BAJA,
-    creator: 13,
+    creator: 103,
   },
   {
     question: '¿Quién fue subcampeón de Inglaterra en el Mundial 1966? ',
@@ -114,7 +114,7 @@ module.exports.listOfQuestions = [
     ],
     correct: 0,
     difficulty: constants.difficulty.MEDIA,
-    creator: 13,
+    creator: 103,
   },
   {
     question: 'En la final de la Champions League del 2005, ¿quiénes metieron los goles del Liverpool? ',
@@ -126,7 +126,7 @@ module.exports.listOfQuestions = [
     ],
     correct: 2,
     difficulty: constants.difficulty.ALTA,
-    creator: 13,
+    creator: 103,
   },
   {
     question: '¿Quién era el Entrenador del Velez Campeón de 1998? ',
@@ -139,7 +139,7 @@ module.exports.listOfQuestions = [
     ],
     correct: 1,
     difficulty: constants.difficulty.ALTA,
-    creator: 13,
+    creator: 103,
   },
   {
     question: '¿Cual es la temporada en que los Gunners de Arsene Wenger se coronan campeones sin perder un partido? ',
@@ -150,7 +150,7 @@ module.exports.listOfQuestions = [
     ],
     correct: 1,
     difficulty: constants.difficulty.BAJA,
-    creator: 13,
+    creator: 103,
   },
   {
     question: 'En el año 2006, Holanda y Portugal se enfrentan en los Octavos de Final del Mundial de Alemania. ¿Quién salió victorioso? ',
@@ -161,7 +161,7 @@ module.exports.listOfQuestions = [
     ],
     correct: 1,
     difficulty: constants.difficulty.BAJA,
-    creator: 13,
+    creator: 103,
   },
   {
     question: '¿Quién es el máximo goleador histórico de la Selección Argentina de Fútbol ? ',
@@ -172,7 +172,7 @@ module.exports.listOfQuestions = [
     ],
     correct: 2,
     difficulty: constants.difficulty.BAJA,
-    creator: 13,
+    creator: 103,
   },
   {
     question: '¿Quién fue el campeón del Torneo Nacional de 1984 en Argentina? ',
@@ -185,7 +185,7 @@ module.exports.listOfQuestions = [
     ],
     correct: 0,
     difficulty: constants.difficulty.ALTA,
-    creator: 13,
+    creator: 103,
   },
   {
     question: '¿Quién ganó el Balón de Oro a Mejor Jugador en el mundial del 2002? ',
@@ -196,7 +196,7 @@ module.exports.listOfQuestions = [
     ],
     correct: 1,
     difficulty: constants.difficulty.MEDIA,
-    creator: 13,
+    creator: 103,
   },
   {
     question: '¿Quién fue el campeón de la Liga MX en México? ',
@@ -209,7 +209,7 @@ module.exports.listOfQuestions = [
     ],
     correct: 3,
     difficulty: constants.difficulty.ALTA,
-    creator: 13,
+    creator: 103,
   },
   {
     question: '¿En cuál de estos equipos no jugó Carlos \"El Apache\" Tevez? ',
@@ -220,7 +220,7 @@ module.exports.listOfQuestions = [
     ],
     correct: 2,
     difficulty: constants.difficulty.BAJA,
-    creator: 13,
+    creator: 103,
   },
   {
     question: '¿Cuál de estos equipos ingleses no pertenece a la ciudad de Londres? ',
@@ -233,7 +233,7 @@ module.exports.listOfQuestions = [
     ],
     correct: 3,
     difficulty: constants.difficulty.MEDIA,
-    creator: 15,
+    creator: 105,
   },
   {
     question: '¿Cuantos goles metió el Polaco-Alemán Miroslav Klose en todos los mundiales? ',
@@ -245,7 +245,7 @@ module.exports.listOfQuestions = [
     ],
     correct: 2,
     difficulty: constants.difficulty.BAJA,
-    creator: 15,
+    creator: 105,
   },
   {
     question: '¿En cuál de estos equipos no jugó Gerard Piqué? ',
@@ -256,7 +256,7 @@ module.exports.listOfQuestions = [
     ],
     correct: 1,
     difficulty: constants.difficulty.MEDIA,
-    creator: 15,
+    creator: 105,
   },
   {
     question: '¿Qué equipo ganó la Champions League en el año 2002? ',
@@ -268,7 +268,7 @@ module.exports.listOfQuestions = [
     ],
     correct: 2,
     difficulty: constants.difficulty.MEDIA,
-    creator: 15,
+    creator: 105,
   },
   {
     question: '¿Qué tienen en común estos jugadores: Pierre Aubameyang, Thierry Henry, Sebastien Squillaci, David Trezeguet y Emmanuel Petit ? ',
@@ -281,7 +281,7 @@ module.exports.listOfQuestions = [
     ],
     correct: 3,
     difficulty: constants.difficulty.ALTA,
-    creator: 15,
+    creator: 105,
   },
   {
     question: '¿Jugaron juntos en el Sporting Lisboa, Cristiano Ronaldo y Nani? ',
@@ -291,7 +291,7 @@ module.exports.listOfQuestions = [
     ],
     correct: 1,
     difficulty: constants.difficulty.BAJA,
-    creator: 15,
+    creator: 105,
   },
   {
     question: '¿En qué año nació Antoine Griezmann? ',
@@ -302,7 +302,7 @@ module.exports.listOfQuestions = [
     ],
     correct: 2,
     difficulty: constants.difficulty.BAJA,
-    creator: 15,
+    creator: 105,
   },
   {
     question: '¿Quién fue el tercer puesto en la entrega del Balón de Oro de la FIFA en el 2008? ',
@@ -313,7 +313,7 @@ module.exports.listOfQuestions = [
     ],
     correct: 1,
     difficulty: constants.difficulty.MEDIA,
-    creator: 15,
+    creator: 105,
   },
   {
     question: '¿Cuál de estas ligas no pertenece al Quinteto de competiciones más atractivas según la UEFA? ',
@@ -324,7 +324,7 @@ module.exports.listOfQuestions = [
     ],
     correct: 2,
     difficulty: constants.difficulty.BAJA,
-    creator: 15,
+    creator: 105,
   },
 ];
 

@@ -4,28 +4,33 @@ const constants = require('./constants.js');
 const fn = require('./general-functions.js');
 const get = require('./gets-functions.js');
 
+const log = console.log;
+const colour = constants.colours;
+
 
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
 
-const log = console.log;
-const colour = constants.colours;
-
 const questionsAsked = [];
-const playersPlaying = [];
+const playersPlayingIds = [];
+const possiblePlayers = Object.assign({}, constants.players_id);
 
 const questionsAlreadyAsked = (index) => questionsAsked.push(index);
 const checkIfWasAsked = (index) => questionsAsked.includes(index);
+const checkIfUserNameAlreadyExistsBetweenUsers = (name) => (
+  Object.keys(constants.players_id).includes(name) ||
+  Object.keys(possiblePlayers).includes(name)
+  );
 
 function askHowManyAreGoingToPlay(cb) {
   const numberPlayers = get.getHowManyPlayersString();
   const myQuestion = `\n${colour.blueBold('¿Cuántos van a jugar?:')} \n${numberPlayers}\n${colour.alentameGreen('Selección: ')}`;
 
   rl.question(myQuestion, (ans) => {
-    const playersArr = constants.numberOfPlayers;
-    if (playersArr.includes(+ans)) {
+    const amountOfMaxPlayers = constants.numberOfMaxPlayers;
+    if (parseInt(ans) > 0 && parseInt(ans) <= amountOfMaxPlayers) {
       cb(+ans);
     } else {
       log(colour.wrongRed('Ese caracter no está permitido. Elegí otra vez dentro de las posibilidades en pantalla'));
@@ -35,65 +40,93 @@ function askHowManyAreGoingToPlay(cb) {
 }
 
 function askPlayer(numberPlayers, cb) {
-  const players = get.getPlayersPlayingString(playersPlaying);
-  const firstPartOfQuestion = `\n${colour.yellow(`Jugador ${playersPlaying.length + 1}:`)}\nSi sos invitado, presiona 1, sino, ingresá tu usuario.\n`;
+  const players = get.getPlayersPlayingString();
+  const firstPartOfQuestion = `\n${colour.yellow(`Jugador ${playersPlayingIds.length + 1}:`)}\nSi sos invitado, presiona 1, sino, ingresá tu usuario.\n`;
   const clarificationNote = `(Si queres visualizar los posibles Usuarios, presioná 0)\n`;
   const selection = `\n${colour.alentameGreen('Selección: ')}`;
   const myQuestion = `${firstPartOfQuestion}${clarificationNote}${selection}`;
 
   rl.question(myQuestion, (ans) => {
-    const possiblePlayersId = Object.values(constants.players_id);
+    const possiblePlayersId = [1].concat(Object.values(possiblePlayers));
 
     if(+ans === 0) {
-      log(`${players}`);
-      askPlayer(numberPlayers, cb)
+
+      log(players);
+      return askPlayer(numberPlayers, cb)
     }
     if (isNaN(+ans)) {
+
       const answer = constants.players_id[ans.toUpperCase()];
+
       if (answer === undefined) {
+
         log(colour.wrongRed('Comando inválido. Intentá de nuevo'));
-        askPlayer(numberPlayers, cb);
-      }
-      if (playersPlaying.includes(answer)) {
-        log(colour.wrongRed(`Jugador ya elegido. Intentá de nuevo con las siguientes opciones\n \n ${players}`));
         return askPlayer(numberPlayers, cb);
+
+      }
+
+      if (playersPlayingIds.includes(answer)) {
+
+        log(`${colour.wrongRed('Jugador ya elegido. Intentá de nuevo con las siguientes opciones')}\n \n ${players}`);
+        return askPlayer(numberPlayers, cb);
+
       } else {
-        playersPlaying.push(answer);
-        log(`Jugador ${playersPlaying.length} es `,setPlayerColour(answer, `${ans.toUpperCase()}`));
+
+        playersPlayingIds.push(answer);
+        log(`Jugador ${playersPlayingIds.length} es `,setPlayerColour(answer, `${ans.toUpperCase()}`));
+
       }
     } else if (possiblePlayersId.includes(+ans)) {
-      if (+ans < 11) {
-        const nextGuest = fn.closestEmptyNumber(playersPlaying);
-        playersPlaying.push(nextGuest);
-        log(`Jugador ${playersPlaying.length} es`, setPlayerColour(nextGuest, `${fn.getKeyOfValue(constants.players_id, nextGuest)}`));
-      } else if (playersPlaying.includes(+ans)) {
-        log(colour.wrongRed(`Jugador ya elegido. Intentá de nuevo con las siguientes opciones\n \n ${players}`));
+
+      if (+ans === 1) {
+
+        const playerId = fn.closestEmptyNumber(playersPlayingIds);
+        playersPlayingIds.push(playerId);
+        return askGuestName(playerId, numberPlayers, cb);
+
+      } else if (playersPlayingIds.includes(+ans)) {
+
+        log(`${colour.wrongRed('Jugador ya elegido. Intentá de nuevo con las siguientes opciones')}\n \n ${players}`);
         return askPlayer(numberPlayers, cb);
+
       } else {
-        playersPlaying.push(+ans);
-        log(`Jugador ${playersPlaying.length} es `, setPlayerColour(+ans, `${fn.getKeyOfValue(constants.players_id, +ans)}`));
+
+        playersPlayingIds.push(+ans);
+        log(`Jugador ${playersPlayingIds.length} es `, setPlayerColour(+ans, `${fn.getKeyOfValue(possiblePlayers, +ans)}`));
+
       }
     } else {
+
       log(colour.wrongRed('Comando inválido. Intentá de nuevo'));
-      askPlayer(numberPlayers, cb);
+      return askPlayer(numberPlayers, cb);
+
     }
-    if (playersPlaying.length === numberPlayers) {
-      cb(+ans);
+
+    if (playersPlayingIds.length === numberPlayers) {
+
+      return cb(+ans);
+
     } else {
-      askPlayer(numberPlayers, cb);
+
+      return askPlayer(numberPlayers, cb);
+
     }
   });
 }
 
 function askDifficulty(cb) {
-  const possibleDifficulties = get.getPossibleDifficulties();
+  const possibleDifficulties = get.getPossibleDifficultiesInMenu();
 	const myQuestion = `\nElegí la dificultad: \n${possibleDifficulties}\n${colour.alentameGreen('Selección: ')} `;
 
 	rl.question(myQuestion, (ans) => {
+
 	  const diffObject = constants.difficulty;
+
 	  if (Object.values(diffObject).includes(+ans)) {
+
 	    const chosenDifficulty = (+ans === 1) ? 'Baja' :
         (+ans === 2) ? 'Media' : 'Alta';
+
 	    log(`\nDificultad Elegida: ${colour.orange(chosenDifficulty)} `);
 	    cb(+ans);
     } else {
@@ -102,6 +135,35 @@ function askDifficulty(cb) {
     }
 	});
 }
+
+function askGuestName(playerId, numberPlayers, cb) {
+  const myQuestion = `\n${colour.orange('Bienvenido! Elegí un nombre de usuario')}\n\n${colour.alentameGreen('Selección: ')}`;
+
+  rl.question(myQuestion, (ans) => {
+
+    let playerName = ans.toString().toUpperCase();
+
+    if (checkIfUserNameAlreadyExistsBetweenUsers(playerName)) {
+
+      log(colour.wrongRed('Este nombre de usuario ya existe. Elige otro'));
+      return askGuestName(playerId, numberPlayers, cb);
+
+    }
+
+    Object.assign(possiblePlayers, { [playerName]: playerId });
+    log(`Jugador ${playersPlayingIds.length} es`, setPlayerColour(playerId, playerName));
+
+    if (playersPlayingIds.length === numberPlayers) {
+
+      return cb(+ans);
+
+    } else {
+
+      return askPlayer(numberPlayers, cb);
+
+    }
+  });
+} 
 
 function nextQuestion(difficulty, player) {
 	let nextIndex;
@@ -136,7 +198,7 @@ function determineWinnerOfGame() {
     log('Hay un Empate');
   } else {
     const playerId = Object.keys(correctAnswersObj)[correctAnswersPerPlayer.indexOf(result)];
-    const playerName = fn.getKeyOfValue(constants.players_id, +playerId);
+    const playerName = fn.getKeyOfValue(possiblePlayers, +playerId);
     log('El ganador es', setPlayerColour(+playerId, `${playerName}`));
   }
 }
@@ -158,9 +220,12 @@ function compareAmountOfTurns() {
 
 function pickPlayerTurn() {
 
-  for (const player of playersPlaying) {
+  for (const player of playersPlayingIds) {
+
     if (playerTurns[player] === undefined) {
+
       countPlayersTurns(player);
+
       return player;
     }
   }
@@ -172,14 +237,19 @@ function pickPlayerTurn() {
 function setPlayerColour(playerId, text) {
   const possibleColours = ['lightBlueBold', 'pinkBold', 'orange', 'yellow'];
 
-  return colour[possibleColours[playersPlaying.indexOf(+playerId)]](text);
+  return colour[possibleColours[playersPlayingIds.indexOf(+playerId)]](text);
 }
 
 function countPlayersTurns(playerId) {
+
   if (playerTurns[playerId] !== undefined) {
+
     playerTurns[playerId]++;
+
   } else {
+
     playerTurns[playerId] = 1;
+
   }
   return playerId;
 }
@@ -192,22 +262,26 @@ function askQuestions(difficulty, indexQuest = null, prevPlayer = null) {
   let player;
 
   if (indexQuest !== null) {
+
     indexQuestion = indexQuest;
     player = prevPlayer;
+
   } else {
+
     player = pickPlayerTurn();
     indexQuestion = nextQuestion(difficulty, player);
     questionsAlreadyAsked(indexQuestion);
+
   }
 
-  const playerName = fn.getKeyOfValue(constants.players_id, player);
+  const playerName = fn.getKeyOfValue(possiblePlayers, player);
   const currQuestionObject = loq.listOfQuestions[indexQuestion];
 	let currQuestion = currQuestionObject.question;
 
 	let userInput = `\nTURNO DE ${setPlayerColour(player, `${playerName}`)}\n${currQuestion} ${get.getOptionsString(currQuestionObject)}${colour.alentameGreen('Respuesta: ')}`;
 
 
-	if (counter < constants.numberOfQuestionsPerPlayer * playersPlaying.length) {
+	if (counter < constants.numberOfQuestionsPerPlayer * playersPlayingIds.length) {
 		rl.question(userInput, (ans) => {
       if (checkCommandValidationInQuiz(loq.listOfQuestions[indexQuestion].answers, ans)) {
         const answer = parseInt(ans);
@@ -233,24 +307,25 @@ function askQuestions(difficulty, indexQuest = null, prevPlayer = null) {
 			}
 		});
 	} else {
-	  if (playersPlaying.length !== 1) {
+
+	  if (playersPlayingIds.length !== 1) {
       determineWinnerOfGame();
     }
+
     const correctAnswersObj = get.getAmountOfCorrectAnswersPerPlayer(state);
-		for (let i = 0; i < playersPlaying.length; i++) {
-      const playerName = fn.getKeyOfValue(constants.players_id, playersPlaying[i]);
-      const quantityOfCorrectAnswers = correctAnswersObj[playersPlaying[i]];
+		for (let i = 0; i < playersPlayingIds.length; i++) {
+      const playerName = fn.getKeyOfValue(possiblePlayers, playersPlayingIds[i]);
+      const quantityOfCorrectAnswers = correctAnswersObj[playersPlayingIds[i]];
       if (quantityOfCorrectAnswers === undefined){
-        log(setPlayerColour(playersPlaying[i], `${playerName}`), ': No Acertaste respuestas');
+        log(setPlayerColour(playersPlayingIds[i], `${playerName}`), ': No Acertaste respuestas');
       } else {
-        log(setPlayerColour(playersPlaying[i], `${playerName}`), `: Acertaste ${quantityOfCorrectAnswers} respuestas`);
+        log(setPlayerColour(playersPlayingIds[i], `${playerName}`), `: Acertaste ${quantityOfCorrectAnswers} respuestas`);
       }
     }
 		rl.close();
 	}
-
-
 }
+
 function startGame() {
   askHowManyAreGoingToPlay( (numberPlayers) => {
     askPlayer( numberPlayers, () => {
@@ -260,5 +335,6 @@ function startGame() {
     });
   });
 }
+
 
 startGame();

@@ -19,7 +19,7 @@
   ],
   "dependencies": {
     "chalk": "^2.2.0",
-    "knex": "^0.14.4",
+    "knex": "^0.19.5",
     "pg": "^7.4.1"
   },
   "author": "Francisco Politi",
